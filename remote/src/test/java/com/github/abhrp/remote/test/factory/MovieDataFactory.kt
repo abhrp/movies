@@ -8,11 +8,11 @@ import com.github.abhrp.remote.model.MoviesResponseModel
 object MovieDataFactory {
 
     fun makeMovie(): MovieModel {
-        return MovieModel(DataFactory.randomString(), DataFactory.randomBoolean(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomIntList(4), DataFactory.randomInt(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomDouble(), DataFactory.randomInt(), DataFactory.randomBoolean(), DataFactory.randomDouble())
+        return MovieModel(DataFactory.randomString(), DataFactory.randomBoolean(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomIntList(4), DataFactory.randomInt(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomDouble(), DataFactory.randomInt(), DataFactory.randomBoolean(), DataFactory.randomDouble(), DataFactory.randomBoolean())
     }
 
     fun makeMovieEntity(): MovieEntity {
-        return MovieEntity(com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomBoolean(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomIntList(4), com.github.abhrp.data.factory.DataFactory.randomInt(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomString(), com.github.abhrp.data.factory.DataFactory.randomDouble(), com.github.abhrp.data.factory.DataFactory.randomInt(), com.github.abhrp.data.factory.DataFactory.randomBoolean(), com.github.abhrp.data.factory.DataFactory.randomDouble())
+        return MovieEntity(DataFactory.randomString(), DataFactory.randomBoolean(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomIntList(4), DataFactory.randomInt(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomString(), DataFactory.randomDouble(), DataFactory.randomInt(), DataFactory.randomBoolean(), DataFactory.randomDouble(), DataFactory.randomBoolean())
     }
 
     fun makeMovieResponse(): MoviesResponseModel {

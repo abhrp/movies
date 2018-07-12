@@ -20,7 +20,7 @@ object MoviesDataFactory {
         return numbers
     }
 
-    fun makeMovie(): Movie = Movie(randomString(), randomBoolean(), randomString(), randomString(), randomIntList(3), randomInt(), randomString(), randomString(), randomString(), randomString(), randomDouble(), randomInt(), randomBoolean(), randomDouble())
+    fun makeMovie(): Movie = Movie(randomString(), randomBoolean(), randomString(), randomString(), randomIntList(3), randomInt(), randomString(), randomString(), randomString(), randomString(), randomDouble(), randomInt(), randomBoolean(), randomDouble(), randomBoolean())
 
     fun makeMoviesList(count: Int): List<Movie> {
         val movies = mutableListOf<Movie>()
