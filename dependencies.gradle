@@ -1,0 +1,80 @@
+ext {
+    buildToolsVersion = "28.0.1"
+    minSDKVersion = 16
+    compileSDKVersion = 27
+    targetSDKVersion = 27
+    kotlinVersion = "1.2.51"
+
+    supportLibraryVersion = "27.0.3"
+    roomVersion = "1.1.1"
+    daggerVersion = "2.16"
+    retrofitVersion = '2.4.0'
+    retrofitRxJavaAdapterVersion = '1.0.0'
+    okHttpVersion = '3.10.0'
+    archComponents = '1.1.1'
+    gsonVersion = '2.8.5'
+    androidTestRunner = '1.0.2'
+
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    rxJavaVersion = "2.2.0"
+    javaxAnnotationVersion = "1.3.2"
+    javaxInjectVersion = "1"
+
+    jUnitVersion = "4.12"
+    assertJVersion = "3.10.0"
+    mockitoKotlinVersion = "1.6.0"
+    robolectricVersion = "3.8"
+
+    domainDependencies = [
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}"
+    ]
+
+    domainTestDependencies = [
+            jUnit: "junit:junit:${jUnitVersion}",
+            assertJ: "org.assertj:assertj-core:${assertJVersion}",
+            mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}"
+    ]
+
+    dataDependencies = [
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}"
+    ]
+
+    dataTestDependencies = [
+            jUnit: "junit:junit:${jUnitVersion}",
+            assertJ: "org.assertj:assertj-core:${assertJVersion}",
+            mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
+            kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            robolectric: "org.robolectric:robolectric:${robolectricVersion}"
+    ]
+
+    remoteDependencies = [
+            gson: "com.google.code.gson:gson:${gsonVersion}",
+            rxKotlin: "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion",
+            javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
+            javaxInject: "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${supportLibraryVersion}",
+            okhttp: "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okhttpLogger: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    ]
+
+    remoteTestDependencies = [
+            jUnit: "junit:junit:${jUnitVersion}",
+            assertJ: "org.assertj:assertj-core:${assertJVersion}",
+            mockitoKotlin: "com.nhaarman:mockito-kotlin-kt1.1:${mockitoKotlinVersion}",
+            kotlinUnit: "org.jetbrains.kotlin:kotlin-test-junit:${kotlinVersion}",
+            androidRunner: "com.android.support.test:runner:${androidTestRunner}",
+            androidTestRules: "com.android.support.test:rules:${androidTestRunner}"
+    ]
+}
