@@ -1,0 +1,48 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSDKVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSDKVersion
+        targetSdkVersion rootProject.ext.targetSDKVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    def cacheDependencies = rootProject.ext.cacheDependencies
+    def cacheTestDependencies = rootProject.ext.cacheTestDependencies
+
+    implementation project(':data')
+
+    implementation cacheDependencies.kotlin
+    implementation cacheDependencies.rxKotlin
+    implementation cacheDependencies.javaxAnnotation
+    implementation cacheDependencies.javaxInject
+    implementation cacheDependencies.gson
+    implementation cacheDependencies.roomRuntime
+    implementation cacheDependencies.roomRx
+    implementation cacheDependencies.dagger
+    kapt cacheDependencies.roomCompiler
+    kapt cacheDependencies.daggerCompiler
+
+    testImplementation cacheTestDependencies.kotlinUnit
+    testImplementation cacheTestDependencies.jUnit
+    testImplementation cacheTestDependencies.mockitoKotlin
+    testImplementation cacheTestDependencies.assertJ
+    testImplementation cacheTestDependencies.androidTestRules
+    testImplementation cacheTestDependencies.androidRunner
+    testImplementation cacheTestDependencies.roomTesting
+    testImplementation cacheTestDependencies.archTesting
+}
