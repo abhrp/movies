@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 
 android {
@@ -35,6 +36,10 @@ android {
         sourceCompatibility rootProject.ext.sourceCompatibility
         targetCompatibility rootProject.ext.sourceCompatibility
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 dependencies {
@@ -49,6 +54,7 @@ dependencies {
 
     implementation mobileUIDependencies.rxKotlin
     implementation mobileUIDependencies.kotlin
+    implementation mobileUIDependencies.kotlinReflect
     implementation mobileUIDependencies.javaxAnnotation
     implementation mobileUIDependencies.javaxInject
     implementation mobileUIDependencies.androidAnnotations
@@ -56,7 +62,7 @@ dependencies {
     implementation mobileUIDependencies.archRuntime
     implementation mobileUIDependencies.archExtensions
     implementation mobileUIDependencies.timber
-    implementation mobileUIDependencies.glide
+    implementation mobileUIDependencies.picasso
     implementation mobileUIDependencies.supportAppCompat
     implementation mobileUIDependencies.supportV4
     implementation mobileUIDependencies.recyclerView
@@ -67,7 +73,6 @@ dependencies {
 
     kapt mobileUIDependencies.daggerProcessor
     kapt mobileUIDependencies.daggerCompiler
-    kapt mobileUIDependencies.glideCompiler
     kapt mobileUIDependencies.glassFishAnnotation
     kapt mobileUIDependencies.archCompiler
     kapt mobileUIDependencies.roomCompiler

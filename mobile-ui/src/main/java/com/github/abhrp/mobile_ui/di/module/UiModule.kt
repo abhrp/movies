@@ -2,7 +2,7 @@ package com.github.abhrp.mobile_ui.di.module
 
 import com.github.abhrp.domain.executor.PostExecutionThread
 import com.github.abhrp.mobile_ui.UIThread
-import com.github.abhrp.mobile_ui.activities.BrowseMoviesActivity
+import com.github.abhrp.mobile_ui.browse.BrowseMoviesActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
