@@ -20,6 +20,8 @@ dependencies {
     testImplementation remoteTestDependencies.kotlinUnit
     testImplementation remoteTestDependencies.jUnit
     testImplementation remoteTestDependencies.mockitoKotlin
+    testImplementation remoteTestDependencies.mockitoCore
+    testImplementation remoteTestDependencies.mockitoInline
     testImplementation remoteTestDependencies.assertJ
     testImplementation remoteTestDependencies.androidTestRules
     testImplementation remoteTestDependencies.androidRunner

@@ -55,7 +55,7 @@ class MoviesRemoteDataStoreTest {
 
     @Test(expected = UnsupportedOperationException::class)
     fun saveMoviesThrowsException() {
-        store.saveMovies(any()).test()
+        store.saveMovies(emptyList()).test()
     }
 
     private fun stubGetMovies(observable: Observable<List<MovieEntity>>) {

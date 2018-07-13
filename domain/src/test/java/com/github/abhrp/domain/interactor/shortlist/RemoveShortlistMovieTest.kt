@@ -8,9 +8,12 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
+@RunWith(JUnit4::class)
 class RemoveShortlistMovieTest {
 
     lateinit var removeMovie: RemoveMovie
@@ -26,7 +29,7 @@ class RemoveShortlistMovieTest {
     }
 
     private fun stubShortlistMovie(completable: Completable) {
-        whenever(movieRepository.shortListMovie(any()))
+        whenever(movieRepository.removeMovie(any()))
                 .thenReturn(completable)
     }
 

@@ -40,7 +40,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
     override fun getShortlistedMovies(): Observable<List<MovieEntity>> {
         return movieDatabase
                 .getCachedMoviesDao()
-                .getSavedMovies()
+                .getShortlistedMovies()
                 .toObservable()
                 .map {
                     it.map {
@@ -51,14 +51,14 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
 
     override fun setMovieAsShortlisted(movieId: Int): Completable {
         return Completable.defer {
-            movieDatabase.getCachedMoviesDao().setSaveMovie(true, movieId)
+            movieDatabase.getCachedMoviesDao().setShortlistedMovie(true, movieId)
             Completable.complete()
         }
     }
 
     override fun removeMovieFromShortlist(movieId: Int): Completable {
         return Completable.defer {
-            movieDatabase.getCachedMoviesDao().setSaveMovie(false, movieId)
+            movieDatabase.getCachedMoviesDao().setShortlistedMovie(false, movieId)
             Completable.complete()
         }
     }

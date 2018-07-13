@@ -61,6 +61,7 @@ class MoviesCacheDataStoreTest {
     @Test
     fun saveMoviesCompletes() {
         saveMovies(Completable.complete())
+        setLastCacheTime(Completable.complete())
         val testObserver = store.saveMovies(listOf(MovieFactory.makeMovieEntity())).test()
         testObserver.assertComplete()
     }
@@ -69,6 +70,7 @@ class MoviesCacheDataStoreTest {
     fun saveMoviesCallsCache() {
         val data = listOf(MovieFactory.makeMovieEntity())
         saveMovies(Completable.complete())
+        setLastCacheTime(Completable.complete())
         store.saveMovies(data).test()
         verify(cache).saveMovies(data)
     }
@@ -139,5 +141,9 @@ class MoviesCacheDataStoreTest {
 
     private fun clearMovies(completable: Completable) {
         whenever(cache.clearMovies()).thenReturn(completable)
+    }
+
+    private fun setLastCacheTime(completable: Completable) {
+        whenever(cache.setLastCacheTime(any())).thenReturn(completable)
     }
 }

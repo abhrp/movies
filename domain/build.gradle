@@ -11,6 +11,8 @@ dependencies {
     testImplementation domainTestDependencies.jUnit
     testImplementation domainTestDependencies.mockitoKotlin
     testImplementation domainTestDependencies.assertJ
+    testImplementation domainTestDependencies.mockitoCore
+    testImplementation domainTestDependencies.mockitoInline
 }
 
 sourceCompatibility = rootProject.ext.sourceCompatibility

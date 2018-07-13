@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import com.github.abhrp.cache.db.MovieConstants
 import com.github.abhrp.cache.db.MovieConstants.MOVIE_ID
-import com.github.abhrp.cache.db.MovieConstants.SAVED_COLUMN
+import com.github.abhrp.cache.db.MovieConstants.SHORTLISTED_COLUMN
 
 @Entity(tableName = MovieConstants.TABLE_NAME)
 data class CachedMovie(
@@ -25,6 +25,6 @@ data class CachedMovie(
         var voteCount: Int,
         var video: Boolean,
         var voteAverage: Double,
-        @ColumnInfo(name = SAVED_COLUMN)
-        var isSaved: Boolean
+        @ColumnInfo(name = SHORTLISTED_COLUMN)
+        var isShortlisted: Boolean
 )
