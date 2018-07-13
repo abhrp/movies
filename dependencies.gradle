@@ -19,6 +19,7 @@ ext {
     glideVersion = '4.7.1'
     timberVersion = '4.7.1'
     glassFishAnnotationVersion = '10.0-b28'
+    constraintLayoutVersion = '1.1.2'
 
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
@@ -166,7 +167,11 @@ ext {
             recyclerView: "com.android.support:recyclerview-v7:${supportLibraryVersion}",
             design: "com.android.support:design:${supportLibraryVersion}",
             daggerSupport: "com.google.dagger:dagger-android-support:${daggerVersion}",
-            daggerProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}"
+            daggerProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            roomRuntime: "android.arch.persistence.room:runtime:$roomVersion",
+            roomCompiler: "android.arch.persistence.room:compiler:$roomVersion",
+            roomRx: "android.arch.persistence.room:rxjava2:$roomVersion",
+            constraintLayout: "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
     ]
 
     mobileUITestDependencies = [

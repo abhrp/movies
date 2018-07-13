@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import java.util.concurrent.TimeUnit
 
-class MovieDbApiServiceFactory {
+object MovieDbApiServiceFactory {
 
     fun getMovieDbApiService(isDebug: Boolean): MovieDbApiService {
         val okHttpClient = makeOkHttpClient(makeHttpLoggingInterceptor(isDebug))

@@ -42,6 +42,7 @@ dependencies {
     def mobileUITestDependencies = rootProject.ext.mobileUITestDependencies
 
     implementation project(':data')
+    implementation project(':domain')
     implementation project(':remote')
     implementation project(':cache')
     implementation project(':presentation')
@@ -61,12 +62,15 @@ dependencies {
     implementation mobileUIDependencies.recyclerView
     implementation mobileUIDependencies.design
     implementation mobileUIDependencies.daggerSupport
+    implementation mobileUIDependencies.roomRuntime
+    implementation mobileUIDependencies.constraintLayout
 
     kapt mobileUIDependencies.daggerProcessor
     kapt mobileUIDependencies.daggerCompiler
     kapt mobileUIDependencies.glideCompiler
     kapt mobileUIDependencies.glassFishAnnotation
     kapt mobileUIDependencies.archCompiler
+    kapt mobileUIDependencies.roomCompiler
 
     testImplementation mobileUITestDependencies.kotlinUnit
     testImplementation mobileUITestDependencies.jUnit
@@ -78,22 +82,22 @@ dependencies {
     testImplementation mobileUITestDependencies.archTesting
     testImplementation mobileUITestDependencies.robolectric
 
-    androidTestImplementation (mobileUITestDependencies.androidTestRules) {
+    androidTestImplementation(mobileUITestDependencies.androidTestRules) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation (mobileUITestDependencies.androidRunner) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-
-    androidTestImplementation (mobileUITestDependencies.espressoCore) {
+    androidTestImplementation(mobileUITestDependencies.androidRunner) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestImplementation (mobileUITestDependencies.espressoIntents) {
+    androidTestImplementation(mobileUITestDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
 
-    androidTestImplementation (mobileUITestDependencies.espressoContrib) {
+    androidTestImplementation(mobileUITestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation(mobileUITestDependencies.espressoContrib) {
         exclude module: 'support-annotations'
         exclude module: 'support-v4'
         exclude module: 'support-v13'
@@ -106,3 +110,5 @@ dependencies {
     kaptTest mobileUIDependencies.daggerCompiler
     kaptAndroidTest mobileUIDependencies.daggerCompiler
 }
+
+apply plugin: 'kotlin-android-extensions'

@@ -17,18 +17,20 @@ abstract class MovieDatabase : RoomDatabase() {
     abstract fun getCachedMoviesDao(): CachedMoviesDao
     abstract fun getConfigDao(): ConfigDao
 
-    private var INSTANCE: MovieDatabase? = null
-    private val lock = Any()
+    companion object {
+        private var INSTANCE: MovieDatabase? = null
+        private val lock = Any()
 
-    fun getInstance(context: Context): MovieDatabase {
-        if (INSTANCE == null) {
-            synchronized(lock) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, MovieDatabase::class.java, "movies.db").build()
+        fun getInstance(context: Context): MovieDatabase {
+            if (INSTANCE == null) {
+                synchronized(lock) {
+                    if (INSTANCE == null) {
+                        INSTANCE = Room.databaseBuilder(context.applicationContext, MovieDatabase::class.java, "movies.db").build()
+                    }
+                    return INSTANCE as MovieDatabase
                 }
-                return INSTANCE as MovieDatabase
             }
+            return INSTANCE as MovieDatabase
         }
-        return INSTANCE as MovieDatabase
     }
 }
