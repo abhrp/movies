@@ -12,8 +12,6 @@ android {
         targetSdkVersion rootProject.ext.targetSDKVersion
 
         multiDexEnabled rootProject.ext.multiDexEnabled
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {

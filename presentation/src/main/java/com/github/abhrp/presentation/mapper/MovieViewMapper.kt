@@ -7,6 +7,6 @@ import javax.inject.Inject
 class MovieViewMapper @Inject constructor() : Mapper<Movie, MovieView> {
 
     override fun mapToView(domain: Movie): MovieView {
-        return MovieView(domain.posterPath, domain.adult, domain.overview, domain.releaseDate, domain.genreIds, domain.id, domain.originalTitle, domain.originalLanguage, domain.originalTitle, domain.backDropPath, domain.popularity, domain.voteCount, domain.video, domain.voteAverage, domain.isShortlisted)
+        return MovieView(domain.posterPath, domain.adult, domain.overview, domain.releaseDate, domain.genreIds, domain.id, domain.originalTitle, domain.originalLanguage, domain.title, domain.backDropPath, domain.popularity, domain.voteCount, domain.video, domain.voteAverage, domain.isShortlisted)
     }
 }

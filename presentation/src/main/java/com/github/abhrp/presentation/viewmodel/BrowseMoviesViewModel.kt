@@ -70,6 +70,5 @@ class BrowseMoviesViewModel @Inject constructor(
         override fun onError(e: Throwable) {
             liveData.postValue(Resource(ResourceState.ERROR, liveData.value?.data, e.localizedMessage))
         }
-
     }
 }
