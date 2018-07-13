@@ -1,0 +1,108 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSDKVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.github.abhrp.mobile_ui"
+        minSdkVersion rootProject.ext.minSDKVersion
+        targetSdkVersion rootProject.ext.targetSDKVersion
+
+        multiDexEnabled rootProject.ext.multiDexEnabled
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.sourceCompatibility
+        targetCompatibility rootProject.ext.sourceCompatibility
+    }
+}
+
+dependencies {
+    def mobileUIDependencies = rootProject.ext.mobileUIDependencies
+    def mobileUITestDependencies = rootProject.ext.mobileUITestDependencies
+
+    implementation project(':data')
+    implementation project(':remote')
+    implementation project(':cache')
+    implementation project(':presentation')
+
+    implementation mobileUIDependencies.rxKotlin
+    implementation mobileUIDependencies.kotlin
+    implementation mobileUIDependencies.javaxAnnotation
+    implementation mobileUIDependencies.javaxInject
+    implementation mobileUIDependencies.androidAnnotations
+    implementation mobileUIDependencies.rxAndroid
+    implementation mobileUIDependencies.archRuntime
+    implementation mobileUIDependencies.archExtensions
+    implementation mobileUIDependencies.timber
+    implementation mobileUIDependencies.glide
+    implementation mobileUIDependencies.supportAppCompat
+    implementation mobileUIDependencies.supportV4
+    implementation mobileUIDependencies.recyclerView
+    implementation mobileUIDependencies.design
+    implementation mobileUIDependencies.daggerSupport
+
+    kapt mobileUIDependencies.daggerProcessor
+    kapt mobileUIDependencies.daggerCompiler
+    kapt mobileUIDependencies.glideCompiler
+    kapt mobileUIDependencies.glassFishAnnotation
+    kapt mobileUIDependencies.archCompiler
+
+    testImplementation mobileUITestDependencies.kotlinUnit
+    testImplementation mobileUITestDependencies.jUnit
+    testImplementation mobileUITestDependencies.mockitoKotlin
+    testImplementation mobileUITestDependencies.mockitoCore
+    testImplementation mobileUITestDependencies.mockitoInline
+    androidTestImplementation mobileUITestDependencies.mockitoAndroid
+    testImplementation mobileUITestDependencies.assertJ
+    testImplementation mobileUITestDependencies.archTesting
+    testImplementation mobileUITestDependencies.robolectric
+
+    androidTestImplementation (mobileUITestDependencies.androidTestRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation (mobileUITestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation (mobileUITestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation (mobileUITestDependencies.espressoIntents) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+
+    androidTestImplementation (mobileUITestDependencies.espressoContrib) {
+        exclude module: 'support-annotations'
+        exclude module: 'support-v4'
+        exclude module: 'support-v13'
+        exclude module: 'appcompat'
+        exclude module: 'appcompat-v7'
+        exclude module: 'recyclerview-v7'
+        exclude module: 'design'
+    }
+
+    kaptTest mobileUIDependencies.daggerCompiler
+    kaptAndroidTest mobileUIDependencies.daggerCompiler
+}
