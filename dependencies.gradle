@@ -76,7 +76,8 @@ ext {
             okhttpLogger: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
-            retrofitAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+            retrofitAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            retrofitAdapter2: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
     ]
 
     remoteTestDependencies = [

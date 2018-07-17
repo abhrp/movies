@@ -7,6 +7,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieDbApiService {
-    @GET("list/popular")
+    @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") apiKey: String = MoviesDbConstants.API_KEY): Observable<MoviesResponseModel>
 }

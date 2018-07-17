@@ -16,6 +16,7 @@ dependencies {
     implementation remoteDependencies.retrofit
     implementation remoteDependencies.retrofitConverter
     implementation remoteDependencies.retrofitAdapter
+    implementation remoteDependencies.retrofitAdapter2
 
     testImplementation remoteTestDependencies.kotlinUnit
     testImplementation remoteTestDependencies.jUnit
