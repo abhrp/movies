@@ -2,12 +2,16 @@ package com.github.abhrp.cache
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import android.arch.persistence.room.Room
+import android.content.Context
 import com.github.abhrp.cache.db.MovieDatabase
 import com.github.abhrp.cache.mapper.CachedMovieMapper
+import com.github.abhrp.cache.sharedpreferences.MoviesSharedPreferences
 import com.github.abhrp.cache.test.factory.MovieDataFactory
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.Mock
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 
@@ -18,6 +22,9 @@ class MovieCacheImplTest {
     @JvmField
     val instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @Mock
+    private lateinit var context: Context
+
     private val database = Room
             .inMemoryDatabaseBuilder(RuntimeEnvironment.application.applicationContext, MovieDatabase::class.java)
             .allowMainThreadQueries()
@@ -25,7 +32,16 @@ class MovieCacheImplTest {
 
     private val cachedMovieMapper = CachedMovieMapper()
 
-    private val cache = MovieCacheImpl(database, cachedMovieMapper)
+    private lateinit var sharedPreferences: MoviesSharedPreferences
+    private lateinit var cache: MovieCacheImpl
+
+    @Before
+    fun setup() {
+        sharedPreferences = MoviesSharedPreferences(context)
+        cache = MovieCacheImpl(database, cachedMovieMapper, sharedPreferences)
+    }
+
+
 
     @Test
     fun deleteMoviesCompletes() {

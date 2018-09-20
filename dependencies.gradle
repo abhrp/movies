@@ -34,6 +34,7 @@ ext {
     robolectricVersion = "3.8"
     mockitoVersion = '2.19.0'
     espressoVersion = '3.0.2'
+    moshiVersion = '1.6.0'
 
     domainDependencies = [
             javaxAnnotation: "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}",
@@ -76,8 +77,11 @@ ext {
             okhttpLogger: "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
             retrofit: "com.squareup.retrofit2:retrofit:${retrofitVersion}",
             retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            moshiRetrofit: "com.squareup.retrofit2:converter-moshi:${retrofitVersion}",
             retrofitAdapter: "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
-            retrofitAdapter2: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
+            retrofitAdapter2: "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0",
+            moshiCodeGen: "com.squareup.moshi:moshi-kotlin-codegen:${moshiVersion}",
+            moshi: "com.squareup.moshi:moshi-kotlin:${moshiVersion}"
     ]
 
     remoteTestDependencies = [

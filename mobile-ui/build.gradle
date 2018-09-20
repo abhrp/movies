@@ -54,7 +54,6 @@ dependencies {
 
     implementation mobileUIDependencies.rxKotlin
     implementation mobileUIDependencies.kotlin
-    implementation mobileUIDependencies.kotlinReflect
     implementation mobileUIDependencies.javaxAnnotation
     implementation mobileUIDependencies.javaxInject
     implementation mobileUIDependencies.androidAnnotations

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3ce50c74b783f545a4c93281f301e8a9",
+    "identityHash": "a543a348a1cd1665f5c326f2a96669e2",
     "entities": [
       {
         "tableName": "movie",
@@ -107,31 +107,11 @@
         },
         "indices": [],
         "foreignKeys": []
-      },
-      {
-        "tableName": "config",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lastCachedTime` INTEGER NOT NULL, PRIMARY KEY(`lastCachedTime`))",
-        "fields": [
-          {
-            "fieldPath": "lastCachedTime",
-            "columnName": "lastCachedTime",
-            "affinity": "INTEGER",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "lastCachedTime"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3ce50c74b783f545a4c93281f301e8a9\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"a543a348a1cd1665f5c326f2a96669e2\")"
     ]
   }
 }

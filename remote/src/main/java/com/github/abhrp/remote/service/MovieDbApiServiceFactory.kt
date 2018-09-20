@@ -5,7 +5,7 @@ import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object MovieDbApiServiceFactory {
@@ -16,7 +16,7 @@ object MovieDbApiServiceFactory {
     }
 
     private fun makeMovieDbApiService(okHttpClient: OkHttpClient): MovieDbApiService {
-        val retrofit = Retrofit.Builder().baseUrl(MoviesDbConstants.BASE_URL).client(okHttpClient).addConverterFactory(GsonConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()
+        val retrofit = Retrofit.Builder().baseUrl(MoviesDbConstants.BASE_URL).client(okHttpClient).addConverterFactory(MoshiConverterFactory.create()).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).build()
         return retrofit.create(MovieDbApiService::class.java)
     }
 

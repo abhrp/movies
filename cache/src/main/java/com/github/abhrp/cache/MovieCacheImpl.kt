@@ -2,7 +2,7 @@ package com.github.abhrp.cache
 
 import com.github.abhrp.cache.db.MovieDatabase
 import com.github.abhrp.cache.mapper.CachedMovieMapper
-import com.github.abhrp.cache.model.Config
+import com.github.abhrp.cache.sharedpreferences.MoviesSharedPreferences
 import com.github.abhrp.data.model.MovieEntity
 import com.github.abhrp.data.repository.MoviesCache
 import io.reactivex.Completable
@@ -10,7 +10,7 @@ import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabase, private val mapper: CachedMovieMapper) : MoviesCache {
+class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabase, private val mapper: CachedMovieMapper, private val sharedPreferences: MoviesSharedPreferences) : MoviesCache {
     override fun clearMovies(): Completable {
         return Completable.defer {
             movieDatabase.getCachedMoviesDao().deleteAll()
@@ -30,7 +30,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
                 .getCachedMoviesDao()
                 .getAllMovies()
                 .toObservable()
-                .map {
+                .map { it ->
                     it.map {
                         mapper.mapToEntity(it)
                     }
@@ -42,7 +42,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
                 .getCachedMoviesDao()
                 .getShortlistedMovies()
                 .toObservable()
-                .map {
+                .map { it ->
                     it.map {
                         mapper.mapToEntity(it)
                     }
@@ -70,7 +70,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
 
     override fun setLastCacheTime(cacheTime: Long): Completable {
         return Completable.defer {
-            movieDatabase.getConfigDao().insertLastCachedTime(Config(cacheTime))
+            sharedPreferences.lastCacheTime = cacheTime
             Completable.complete()
         }
     }
@@ -78,10 +78,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
     override fun isCacheExpired(): Single<Boolean> {
         val currentTime = System.currentTimeMillis()
         val expirationTime = (60 * 10 * 1000).toLong()
-        return movieDatabase.getConfigDao().getConfig()
-                .single(Config(lastCachedTime = 0))
-                .map {
-                    currentTime - it.lastCachedTime > expirationTime
-                }
+        val isExpired = currentTime - sharedPreferences.lastCacheTime > expirationTime
+        return Single.just(isExpired)
     }
 }
