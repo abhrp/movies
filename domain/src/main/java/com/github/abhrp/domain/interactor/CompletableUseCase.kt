@@ -17,7 +17,6 @@ abstract class CompletableUseCase<in Params> constructor(private val postExecuti
         val completable = this.buildUseCaseCompletable(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(postExecutionThread.scheduler)
-
         addDisposable(completable.subscribeWith(observer))
     }
 

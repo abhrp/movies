@@ -30,7 +30,7 @@ class BrowseMoviesAdapter @Inject constructor() : RecyclerView.Adapter<BrowseMov
         holder.bind(movie)
     }
 
-    inner class ViewHolder(override val containerView: View?) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(movie: Movie) {
             movieName.text = movie.title
             moviePopularity.text = movie.popularity.toString()

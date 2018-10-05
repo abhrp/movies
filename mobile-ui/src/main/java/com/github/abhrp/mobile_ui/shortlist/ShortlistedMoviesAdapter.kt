@@ -29,7 +29,7 @@ class ShortlistedMoviesAdapter @Inject constructor() : RecyclerView.Adapter<Shor
         holder.bind(movie)
     }
 
-    inner class ViewHolder(override val containerView: View?) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    inner class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bind(movie: Movie) {
             movieName1.text = movie.title
             moviePopularity1.text = movie.popularity.toString()

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.github.abhrp.data.repository.MoviesRemote
 import com.github.abhrp.mobile_ui.R
 import com.github.abhrp.mobile_ui.di.ViewModelFactory
 import com.github.abhrp.mobile_ui.mapper.MovieMapper
@@ -28,6 +29,8 @@ class BrowseMoviesActivity : AppCompatActivity() {
     lateinit var viemodelFactory: ViewModelFactory
     @Inject
     lateinit var viewmodel: BrowseMoviesViewModel
+    @Inject
+    lateinit var moviesRemote: MoviesRemote
 
     companion object {
         fun initActivity(context: Context): Intent {

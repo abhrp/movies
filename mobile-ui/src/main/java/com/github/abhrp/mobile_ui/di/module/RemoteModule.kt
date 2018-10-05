@@ -8,6 +8,7 @@ import com.github.abhrp.remote.service.MovieDbApiServiceFactory
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 abstract class RemoteModule {
@@ -16,6 +17,7 @@ abstract class RemoteModule {
     companion object {
         @Provides
         @JvmStatic
+        @Singleton
         fun providesMoviesApiService(): MovieDbApiService {
             return MovieDbApiServiceFactory.getMovieDbApiService(BuildConfig.DEBUG)
         }

@@ -35,7 +35,7 @@ class BrowseMoviesViewModel @Inject constructor(
 
     fun fetchMovies() {
         liveData.postValue(Resource(ResourceState.LOADING, null, null))
-        return getMovies.execute(MoviesSubscriber())
+        getMovies.execute(MoviesSubscriber())
     }
 
     fun shortlistMovie(movieId: Int) {
