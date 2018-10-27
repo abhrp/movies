@@ -77,7 +77,7 @@ class MovieCacheImpl @Inject constructor(private val movieDatabase: MovieDatabas
 
     override fun isCacheExpired(): Single<Boolean> {
         val currentTime = System.currentTimeMillis()
-        val expirationTime = (60 * 10 * 1000).toLong()
+        val expirationTime = (60 * 9 * 1000).toLong()
         val isExpired = currentTime - sharedPreferences.lastCacheTime > expirationTime
         return Single.just(isExpired)
     }

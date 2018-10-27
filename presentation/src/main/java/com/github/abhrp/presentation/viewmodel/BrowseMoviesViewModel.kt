@@ -11,8 +11,12 @@ import com.github.abhrp.presentation.mapper.MovieViewMapper
 import com.github.abhrp.presentation.model.MovieView
 import com.github.abhrp.presentation.state.Resource
 import com.github.abhrp.presentation.state.ResourceState
+import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.observers.DisposableObserver
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 import javax.inject.Inject
 
@@ -23,9 +27,11 @@ class BrowseMoviesViewModel @Inject constructor(
         private val mapper: MovieViewMapper) : ViewModel() {
 
     private val liveData: MutableLiveData<Resource<List<MovieView>>> = MutableLiveData()
+    private lateinit var intervalDisposable: Disposable
 
     override fun onCleared() {
         getMovies.disposeAll()
+        intervalDisposable.dispose()
         super.onCleared()
     }
 
@@ -33,9 +39,24 @@ class BrowseMoviesViewModel @Inject constructor(
         return liveData
     }
 
+    fun forceLoad() {
+        intervalDisposable.dispose()
+        fetchMovies()
+    }
+
     fun fetchMovies() {
+        intervalDisposable = Observable
+                .interval(0, 10, TimeUnit.MINUTES)
+                .subscribeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
+                .doOnNext {
+                    loadMovies()
+                }.subscribe()
+    }
+
+    private fun loadMovies() {
         liveData.postValue(Resource(ResourceState.LOADING, null, null))
-        getMovies.execute(MoviesSubscriber())
+        getMovies.execute(observer = MoviesSubscriber())
     }
 
     fun shortlistMovie(movieId: Int) {

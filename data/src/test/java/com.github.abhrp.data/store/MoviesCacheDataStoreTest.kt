@@ -21,6 +21,7 @@ class MoviesCacheDataStoreTest {
 
     @Test
     fun getMoviesCompletes() {
+
         getMoviesFromCache(Observable.just(listOf(MovieFactory.makeMovieEntity())))
         val testObserver = store.getMovies().test()
         testObserver.assertComplete()

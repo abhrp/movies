@@ -8,7 +8,6 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class MoviesRemoteImpl @Inject constructor(private val moviesDbApiService: MovieDbApiService, private val moviesResponseModelMapper: MoviesResponseModelMapper) : MoviesRemote {
-
     override fun getMovies(): Observable<List<MovieEntity>> {
         return moviesDbApiService.getPopularMovies().map { response ->
             response.results.map {
@@ -16,5 +15,4 @@ class MoviesRemoteImpl @Inject constructor(private val moviesDbApiService: Movie
             }
         }
     }
-
 }

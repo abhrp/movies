@@ -17,6 +17,8 @@ import com.github.abhrp.presentation.state.ResourceState
 import com.github.abhrp.presentation.viewmodel.BrowseMoviesViewModel
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_browse_movies.*
+import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class BrowseMoviesActivity : AppCompatActivity() {
@@ -45,18 +47,20 @@ class BrowseMoviesActivity : AppCompatActivity() {
         viewmodel = ViewModelProviders.of(this, viemodelFactory).get(BrowseMoviesViewModel::class.java)
         setUpSwipeToRefreshView()
         setUpMoviesListView()
+        loadMovies()
+        viewmodel.fetchMovies()
     }
 
     private fun setUpSwipeToRefreshView() {
         swipeToRefreshView.setColorSchemeColors(resources.getColor(R.color.colorPrimary))
         swipeToRefreshView.setOnRefreshListener {
-            loadMovies()
+            viewmodel.forceLoad()
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        loadMovies()
+    override fun onResume() {
+        super.onResume()
+        viewmodel.forceLoad()
     }
 
     private fun setUpMoviesListView() {
@@ -65,12 +69,12 @@ class BrowseMoviesActivity : AppCompatActivity() {
     }
 
     private fun loadMovies() {
-        viewmodel.getMovies().observe(this, Observer<Resource<List<MovieView>>> {
+        viewmodel.getMovies().observe(this, Observer<Resource<List<MovieView>>> { it ->
             it?.let {
+                Timber.d(BrowseMoviesActivity::class.simpleName, "Movies loaded at ${Date()}")
                 handleData(it)
             }
         })
-        viewmodel.fetchMovies()
     }
 
     private fun handleData(resource: Resource<List<MovieView>>) {
